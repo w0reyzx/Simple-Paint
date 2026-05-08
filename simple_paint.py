@@ -1,56 +1,65 @@
 from turtle import *
-from random import randint
-from time import sleep
 
-t1 = Turtle(shape="turtle")
-t1.color("red")
-t1.pensize(3)
-t1.right(120)
+t = Turtle(shape="circle")
+t.color("blue")
+t.pensize(3)
 
-t2 = Turtle(shape="turtle")
-t2.color("green")
-t2.pensize(3)
-t2.left(120)
+def draw(x, y):
+    t.goto(x, y)
 
+def move(x, y):
+    t.speed(0)
+    t.penup()
+    t.goto(x, y)
+    t.pendown()
 
-t3 = Turtle(shape="turtle")
-t3.pensize(3)
-t3.color("blue")
+def set_red():
+    t.color("red")
+def set_green():
+    t.color("green")
+def set_blue():
+    t.color('blue')
+def set_white():
+    t.color('white')
+#------------------
+def pen_size_50():
+    t.pensize(50)
+def pen_size_10():
+    t.pensize(10)
+def pen_size_3():
+    t.pensize(3)
+speed = 10
+def step_up():
+    t.goto(t.xcor(), t.ycor() + speed)
+def step_down():
+    t.goto(t.xcor(), t.ycor() - speed)
+def step_left():
+    t.goto(t.xcor() - speed, t.ycor())
+def step_right():
+    t.goto(t.xcor() + speed, t.ycor())
 
-def catch1(x, y):
-    t1.penup()
-    t1.goto(randint(-100, 100), randint(-100, 100))
-    t1.pendown()
-    t1.left(randint(0, 100))
-t1.onclick(catch1)
+def begin():
+    t.begin_fill()
+def end():
+    t.end_fill()
+t.ondrag(draw)
 
-def catch2(x, y):
-    t2.penup()
-    t2.goto(randint(-100, 100), randint(-100, 100))
-    t2.pendown()
-    t2.left(randint(0, 100))
-t2.onclick(catch2)
+scr = t.getscreen()
+scr.listen()
+scr.onkey(step_up, 'w')
+scr.onkey(step_down, 's')
+scr.onkey(step_left, 'a')
+scr.onkey(step_right, 'd')
 
-def catch3(x, y):
-    t3.penup()
-    t3.goto(randint(-100, 100), randint(-100, 100))
-    t3.pendown()
-    t3.left(randint(0, 100))
-t3.onclick(catch3)
+scr.onkey(begin, 'z')
+scr.onkey(end, 'x')
 
-x = 200
-y = 200
+scr.onkey(set_red, '1')
+scr.onkey(set_green, '2')
+scr.onkey(set_blue, '3')
+scr.onkey(set_white, '4')
+scr.onkey(pen_size_50, 'u')
+scr.onkey(pen_size_10, 'i')
+scr.onkey(pen_size_3, 'p')
 
-def game_finfshed(t1, t2, t3):
-    t1_outside = abs(t1.xcor()) > x or abs(t1.ycor()) > y
-    t2_outside = abs(t2.xcor()) > x or abs(t2.ycor()) > y
-    t3_outside = abs(t3.xcor()) > x or abs(t3.ycor()) > y
-    is_outside = t1_outside or t2_outside or t3_outside
-    return is_outside
-
-while not game_finfshed(t1, t2, t3):
-    t1.forward(7)
-    t2.forward(7)
-    t3.forward(7)
-    sleep(0.1)
-t2.write("Good Bye!", font=("Arial", 14, "normal"))
+scr.onscreenclick(move)
