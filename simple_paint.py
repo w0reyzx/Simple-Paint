@@ -63,4 +63,4 @@ scr.onkey(pen_size_10, 'i')
 scr.onkey(pen_size_3, 'p')
 
 scr.onscreenclick(move)
-exitoncklick()
+
