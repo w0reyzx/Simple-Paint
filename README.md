@@ -19,7 +19,7 @@ Eraser - 4
 
 3px - 'p'
 
-**Filling**
+**Filling:**
 
 Start - 'z'
 
