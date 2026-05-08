@@ -1,2 +1,2 @@
-# Simple-Paint
+**Simple-Paint**
 Turtle
